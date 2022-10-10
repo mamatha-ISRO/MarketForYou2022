@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  marketforyou22.api:
+    container_name: "marketforyou22.api"
+    image: ${DOCKER_REGISTRY-}marketforyou22api
+    build:
+      context: .
+      dockerfile: MarketForYou22.API/Dockerfile
+    ports:
+     - "35033:80"
+     - "35034:443"
