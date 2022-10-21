@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Services\Interfaces\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\MKFY.Models\MKFY.Models.csproj" />
     <ProjectReference Include="..\MKFY.Repositories\MKFY.Repositories.csproj" />
   </ItemGroup>

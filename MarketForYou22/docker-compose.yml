@@ -8,5 +8,25 @@ services:
       context: .
       dockerfile: MarketForYou22.API/Dockerfile
     ports:
-     - "35033:80"
-     - "35034:443"
+     - "35053:80"
+     - "35054:443"
+    environment:
+     - ConnectionStrings__DefaultConnection=Server=mkfydata.db;Database=devdb;User Id=devdbuser;password=devdbpassword
+    depends_on:
+     - mkfydata.db
+     
+  mkfydata.db:
+    container_name: "mkfydata.db"
+    restart: on-failure 
+    image: "postgis/postgis:14-3.3-alpine"
+    ports:
+      - "35050:5432"
+    environment:
+       - POSTGRES_USER=devdbuser
+       - POSTGRES_DB=devdb
+       - POSTGRES_PASSWORD=devdbpassword
+    volumes:
+        - mkfydata-db:/var/lib/postgresql/data
+
+volumes:
+  mkfydata-db:
