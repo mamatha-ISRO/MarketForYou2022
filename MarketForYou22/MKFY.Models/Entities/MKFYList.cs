@@ -10,12 +10,12 @@ namespace MKFY.Models.Entities
 {
     public class MKFYList
     {
-        // Default constructor to allow creation of an empty Game entity
+        // Default constructor to allow creation of an empty item entity
         public MKFYList()
         {
         }
 
-        // Constructor used to create a new Game from a GameAddVM model
+        // Constructor used to create a new Game from a item  model
         public MKFYList(MKFYListAddVM src)
         {
             ItemName  = src.ItemName;
@@ -40,6 +40,8 @@ namespace MKFY.Models.Entities
 
         [Required]
         public string PickAddress { get; set; } = string.Empty;
+      
+        // list items city name and find the items with city name 
         [Required]
         public string ItemCity { get; set; } = string.Empty;
 

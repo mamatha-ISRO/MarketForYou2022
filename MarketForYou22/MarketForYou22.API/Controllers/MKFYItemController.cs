@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MKFY.Models.ViewModels;
@@ -8,6 +9,7 @@ namespace MarketForYou22.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class MKFYItemController : ControllerBase
     {
         private readonly IMKFYListServise _MKFYService;
@@ -53,11 +55,12 @@ namespace MarketForYou22.API.Controllers
             }
             catch
             {
-                return BadRequest(new { message = "Unable to retrieve the requested game" });
+                return BadRequest(new { message = "Unable to retrieve the requested  market item" });
             }
         }
         // Get all items list
         [HttpGet]
+       // [Authorize(Roles= "MKADMIN")]
         public async Task<ActionResult<List<MKFYlistVM>>> GetAll()
         {
             try

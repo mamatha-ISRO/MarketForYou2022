@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
 namespace MKFY.Repositories
 {
+    //project repositories
+
     public class UnitOfWork : IUnitOfWork, IDisposable
 
     {
@@ -27,6 +29,7 @@ namespace MKFY.Repositories
             await _context.SaveChangesAsync();
         }
 
+        //impliment  the Idisposable interface application DB context disposal
         public void Dispose()
         {
             _context.Dispose();

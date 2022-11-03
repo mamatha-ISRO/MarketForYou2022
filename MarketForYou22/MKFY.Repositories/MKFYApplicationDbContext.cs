@@ -20,6 +20,7 @@ namespace MKFY.Repositories
         }
 
         public DbSet<MKFYList> MKFYListItems => Set<MKFYList>();
+        public DbSet<User> Users=> Set<User>();
 
     }
 }

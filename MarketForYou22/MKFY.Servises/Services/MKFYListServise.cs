@@ -25,7 +25,7 @@ namespace MKFY.Services.Services
                 // Create the new item entity
                 var newEntity = new MKFYList(src);
 
-                // Have the repository create the new game
+                // Have the repository create the new item
                 _uow.MKFYListItems.Create(newEntity);
                 await _uow.SaveAsync();
 
@@ -44,19 +44,19 @@ namespace MKFY.Services.Services
                 // Build the itemVM view models to return to the client
                 var models = results.Select(item => new MKFYlistVM(item)).ToList();
 
-                // Return the GameVMs
+                // Return the item
                 return models;
             }
 
             public async Task<MKFYlistVM> GetById(Guid id)
             {
-                // Get the requested Game entity from the repository
+                // Get the requested  market item entity from the repository
                 var result = await _uow.MKFYListItems.GetById(id);
 
-                // Create the GameVM we want to return to the client
+                // Create the item VM we want to return to the client
                 var model = new MKFYlistVM(result);
 
-                // Return a 200 response with the GameVM
+                // Return a 200 response with the market item
                 return model;
             }
 

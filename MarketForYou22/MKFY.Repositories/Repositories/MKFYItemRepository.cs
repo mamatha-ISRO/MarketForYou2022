@@ -26,7 +26,7 @@ namespace MKFY.Repositories.Repositoies
             _context.Add(entity);
 
         }
-        // Get a single existing game by Id
+        // Get a single existing item by Id
         public async Task<MKFYList> GetById(Guid id)
         {
             // Get the entity
@@ -36,7 +36,7 @@ namespace MKFY.Repositories.Repositoies
             return result;
         }
 
-        // Get all of the games
+        // Get all of the items
         public async Task<List<MKFYList>> GetAll()
         {
             // Get all the entities
@@ -46,14 +46,14 @@ namespace MKFY.Repositories.Repositoies
             return results;
         }
 
-        // Update an existing game
+        // Update an existing item
         public void Update(MKFYList entity)
         {
             // Update the entity
             _context.Update(entity);
         }
 
-        // Delete a game
+        // Delete a item
         public void Delete(MKFYList entity)
         {
             // Delete the entity

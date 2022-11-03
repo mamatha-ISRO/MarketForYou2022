@@ -11,6 +11,7 @@ services:
      - "35053:80"
      - "35054:443"
     environment:
+     - ASPNETCORE_ENIRONMENT=development
      - ConnectionStrings__DefaultConnection=Server=mkfydata.db;Database=devdb;User Id=devdbuser;password=devdbpassword
      - Auth0__Domain=https://dev-1uvx6qavf1buqj40.us.auth0.com
      - Auth0__Audience=http://MKFY.com
