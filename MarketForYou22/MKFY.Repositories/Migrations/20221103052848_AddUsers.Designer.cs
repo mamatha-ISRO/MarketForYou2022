@@ -3,6 +3,7 @@ using System;
 using MKFY.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MKFY.Repositories.Migrations
 {
     [DbContext(typeof(MKFYApplicationDbContext))]
-    partial class MKFYApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221103052848_AddUsers")]
+    partial class AddUsers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -58,16 +60,7 @@ namespace MKFY.Repositories.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("UserID")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("text");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserID");
 
                     b.ToTable("MKFYListItems");
                 });
@@ -104,22 +97,6 @@ namespace MKFY.Repositories.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("MKFY.Models.Entities.MKFYList", b =>
-                {
-                    b.HasOne("MKFY.Models.Entities.User", "User")
-                        .WithMany("MKFYListItems")
-                        .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("MKFY.Models.Entities.User", b =>
-                {
-                    b.Navigation("MKFYListItems");
                 });
 #pragma warning restore 612, 618
         }

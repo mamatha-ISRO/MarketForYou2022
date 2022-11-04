@@ -23,6 +23,12 @@ namespace MKFY.Models.ViewModels
 
         [Required]
         public string Phone { get; set; } = String.Empty;
+        
+        [Required]
+        public string UserAddress { get; set; } = String.Empty;
+
+        [Required]
+        public string UserCity { get; set; } = String.Empty;
 
     }
 }

@@ -22,6 +22,7 @@ namespace MKFY.Models.ViewModels
             ItemPrice = src.ItemPrice;
             PickAddress = src.PickAddress;
             ItemCity = src.ItemCity;
+            UserId = src.UserId;
         }
 
         public Guid Id { get; set; }
@@ -37,6 +38,7 @@ namespace MKFY.Models.ViewModels
         public DateTime Created { get; set; }
 
         public decimal ItemPrice { get; set; }
+        public string UserId { get; set; }
 
     }
 }

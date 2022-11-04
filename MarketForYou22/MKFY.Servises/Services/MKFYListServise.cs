@@ -20,10 +20,10 @@ namespace MKFY.Services.Services
                 _uow = uow;
             }
 
-            public async Task<MKFYlistVM> Create(MKFYListAddVM src)
+            public async Task<MKFYlistVM> Create(MKFYListAddVM src, string userId)
             {
                 // Create the new item entity
-                var newEntity = new MKFYList(src);
+                var newEntity = new MKFYList(src,userId);
 
                 // Have the repository create the new item
                 _uow.MKFYListItems.Create(newEntity);

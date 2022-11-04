@@ -26,5 +26,10 @@ namespace MKFY.Models.ViewModels
         public string Email { get; set; }
 
         public string Phone { get; set; }
+
+        public string UserAddress {get; set; }
+
+        public string UserCity { get; set; }
+
     }
 }

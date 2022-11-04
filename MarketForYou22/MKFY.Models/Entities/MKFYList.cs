@@ -16,13 +16,14 @@ namespace MKFY.Models.Entities
         }
 
         // Constructor used to create a new Game from a item  model
-        public MKFYList(MKFYListAddVM src)
+        public MKFYList(MKFYListAddVM src, string userId)
         {
             ItemName  = src.ItemName;
             ItemDescription = src.ItemDescription;
             PickAddress = src.PickAddress;
             ItemCity = src.ItemCity;
             ItemPrice = src.ItemPrice;
+            UserID = userId;
         }
         [Key]
         public Guid Id { get; set; }
@@ -50,5 +51,15 @@ namespace MKFY.Models.Entities
 
         [Required]
         public decimal ItemPrice { get; set; }
+
+
+
+        // Relationships 
+        [Required]
+        public string UserID { get; set; } = String.Empty;
+        public string? UserId { get; internal set; }
+
+        public User? User { get; set; }
+
     }
 }

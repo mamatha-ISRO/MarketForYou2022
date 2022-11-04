@@ -1,4 +1,6 @@
-﻿using MKFY.Repositories.Repositoies.Interfaces;
+﻿
+using MKFY.Repositories.Repositoies.Interfaces;
+using MKFY.Repositories.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +13,7 @@ namespace MKFY.Repositories
     {
         // Repositories
         IMKFYitemRepository MKFYListItems { get; }
+        IUserRepository Users { get; }
 
         // Save Method
         Task SaveAsync();

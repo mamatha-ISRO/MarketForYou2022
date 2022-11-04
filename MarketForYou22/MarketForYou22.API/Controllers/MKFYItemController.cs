@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using MarketForYou22.API.Helpers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -25,8 +26,12 @@ namespace MarketForYou22.API.Controllers
         {
             try
             {
+                var userId = User.GetId();
+                if (userId == null)
+                    return BadRequest("Invalid User");
                 // Have the service create the new item
-                var result = await _MKFYService.Create(data);
+                var result = await _MKFYService.Create(data, userId);
+
 
                 // Return a 200 response with the item vm
                 return Ok(result);
@@ -73,7 +78,7 @@ namespace MarketForYou22.API.Controllers
             }
             catch
             {
-                return BadRequest(new { message = "Unable to retrieve the games" });
+                return BadRequest(new { message = "Unable to retrieve the market item" });
             }
         }
 
@@ -117,7 +122,7 @@ namespace MarketForYou22.API.Controllers
             }
             catch
             {
-                return BadRequest(new { message = "Unable to delete the requested game" });
+                return BadRequest(new { message = "Unable to delete the requested  market item" });
             }
         }
 

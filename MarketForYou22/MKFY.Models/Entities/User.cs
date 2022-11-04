@@ -45,7 +45,10 @@ namespace MKFY.Models.Entities
         [Required]
         public string Phone { get; set; } = String.Empty;
 
-        // Game games user created
+        public string UserAddress { get; set; }=String.Empty;
+        public string UserCity { get; set; }=String.Empty;
+
+        //  market item items  user created
         public ICollection<MKFYList> MKFYListItems { get; set; } = new List<MKFYList>();
     }
 }

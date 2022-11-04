@@ -1,5 +1,7 @@
 ﻿using MKFY.Repositories.Repositoies;
 using MKFY.Repositories.Repositoies.Interfaces;
+using MKFY.Repositories.Repositories;
+using MKFY.Repositories.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,12 +18,15 @@ namespace MKFY.Repositories
         private readonly MKFYApplicationDbContext _context;
 
         public IMKFYitemRepository MKFYListItems { get; private set; }
-
+       
+        public IUserRepository Users { get; private set; }
         public UnitOfWork(MKFYApplicationDbContext context)
         {
             _context = context;
 
             MKFYListItems = new MKFYItemRepository(context);
+            Users = new UserRepository(context);
+
         }
 
         public async Task SaveAsync()

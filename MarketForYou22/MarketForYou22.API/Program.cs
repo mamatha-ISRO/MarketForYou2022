@@ -48,7 +48,7 @@ namespace MarketForYou22.API
                 // Setup Dependency Injection
                 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
                 builder.Services.AddScoped<IMKFYListServise, MKFYListServise>();
-
+                builder.Services.AddScoped<IUserService, UserService>();
 
             }
 
