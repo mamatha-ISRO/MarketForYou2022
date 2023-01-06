@@ -45,7 +45,7 @@ namespace MKFY.Repositories.Repositoies
                     .Distinct()
                     .OrderBy(e => e.ItemPrice).ToListAsync();
 
-                 finaldealsLst.Add(results);
+                 finaldealsLst.Append(results);
             }
             // Return the retrieved entities
             return finaldealsLst;
