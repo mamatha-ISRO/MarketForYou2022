@@ -10,7 +10,7 @@ namespace MKFY.Models.ViewModels
     public class UserUpdateVM
     {
         [Required]
-        public string Id { get; set; } = String.Empty;
+        public string UserId { get; set; } = String.Empty;
 
         [Required]
         public string FirstName { get; set; } = String.Empty;

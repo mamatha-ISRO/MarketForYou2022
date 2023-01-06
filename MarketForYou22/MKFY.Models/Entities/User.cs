@@ -23,7 +23,7 @@ namespace MKFY.Models.Entities
 
         public User(UserUpdateVM src)
         {
-            Id = src.Id;
+            Id = src.UserId;
             FirstName = src.FirstName;
             LastName = src.LastName;
             Phone = src.Phone;

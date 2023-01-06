@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using MKFY.Models.ViewModels;
+using MKFY.Services.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MKFY.Models.ViewModels;
-using MKFY.Services.Services.Interfaces;
 
 namespace MarketForYou22.API.Controllers
 {

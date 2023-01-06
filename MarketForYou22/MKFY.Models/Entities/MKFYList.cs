@@ -23,6 +23,7 @@ namespace MKFY.Models.Entities
             PickAddress = src.PickAddress;
             ItemCity = src.ItemCity;
             ItemPrice = src.ItemPrice;
+            ItemCategory = src.ItemCategory;                             
             UserID = userId;
         }
         [Key]
@@ -41,7 +42,7 @@ namespace MKFY.Models.Entities
 
         [Required]
         public string PickAddress { get; set; } = string.Empty;
-      
+         public bool IsSold { get; set; } 
         // list items city name and find the items with city name 
         [Required]
         public string ItemCity { get; set; } = string.Empty;
@@ -52,7 +53,7 @@ namespace MKFY.Models.Entities
         [Required]
         public decimal ItemPrice { get; set; }
 
-
+        public string? BuyerId { get; set; }
 
         // Relationships 
         [Required]

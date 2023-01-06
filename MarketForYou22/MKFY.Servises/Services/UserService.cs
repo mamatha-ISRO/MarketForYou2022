@@ -50,7 +50,7 @@ namespace MKFY.Services.Services
         public async Task<UserVM> Update(UserUpdateVM src)
         {
             // Get the existing entity
-            var entity = await _uow.Users.GetById(src.Id);
+            var entity = await _uow.Users.GetById(src.UserId);
 
             // Perform the update
             entity.FirstName = src.FirstName;

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MKFY.Models.ViewModels;
+using MKFY.Repositories.Repositoies;
 using MKFY.Services.Services.Interfaces;
 
 namespace MarketForYou22.API.Controllers
@@ -22,7 +23,7 @@ namespace MarketForYou22.API.Controllers
 
         // Create a new item
         [HttpPost]
-        public async Task<ActionResult<MKFYlistVM>>Create([FromBody] MKFYListAddVM data)
+        public async Task<ActionResult<MKFYlistVM>> Create([FromBody] MKFYListAddVM data)
         {
             try
             {
@@ -46,6 +47,31 @@ namespace MarketForYou22.API.Controllers
             }
         }
 
+        //impliment search menthod
+        [HttpGet]
+        public async Task<ActionResult<List<MKFYlistVM>>> Search([FromQuery] string? search, [FromQuery] String? category)
+        {
+            try
+            {
+                var result = await _MKFYService.Search(search, category);
+
+                if (result.Any())
+                {
+                    return Ok(result);
+                }
+
+                return NotFound();
+
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                               "Error retrieving data from the database");
+            }
+
+
+        }
+
         // Get a specific item by Id
         [HttpGet("{id}")]
         public async Task<ActionResult<MKFYlistVM>> Get([FromRoute] Guid id)
@@ -65,7 +91,7 @@ namespace MarketForYou22.API.Controllers
         }
         // Get all items list
         [HttpGet]
-       // [Authorize(Roles= "MKADMIN")]
+        // [Authorize(Roles= "MKADMIN")]
         public async Task<ActionResult<List<MKFYlistVM>>> GetAll()
         {
             try
@@ -79,6 +105,23 @@ namespace MarketForYou22.API.Controllers
             catch
             {
                 return BadRequest(new { message = "Unable to retrieve the market item" });
+            }
+        }
+
+        [HttpGet("{ItemCategory}")]
+        public async Task<ActionResult<List<MKFYlistVM>>> GetCategory(String category)
+        {
+            try
+            {
+                // Get the requested category items from the service
+                var result = await _MKFYService.GetCategory(category);
+
+                // Return a 200 response with the item VM
+                return Ok(result);
+            }
+            catch
+            {
+                return BadRequest(new { message = "Unable to retrieve the requested  market item" });
             }
         }
 
@@ -103,10 +146,31 @@ namespace MarketForYou22.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpGet("userDeals/user")]
+        public async Task<ActionResult<List<MKFYlistVM>>> UserDeals()
+        {
+            try
+            {
+                var userId = User.GetId();
+                var result = await _MKFYService.UserDeals(userId);
 
-        // Delete a item
-        [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete([FromRoute] Guid id)
+                if (result.Any())
+                {
+                    return Ok(result);
+                }
+
+                return NotFound();
+
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                               "Error retrieving data from the database");
+            }
+
+        }
+
+        private async Task<ActionResult> Delete([FromRoute] Guid id)
         {
             try
             {
@@ -126,5 +190,28 @@ namespace MarketForYou22.API.Controllers
             }
         }
 
+        private async Task<ActionResult<MKFYlistVM>> Purchase([FromBody] MKFYListUpdateVM data, string id)
+        {
+            try
+            {
+                // Update item entity from the service
+
+                //the data needs to be updated with buyer id and the isold 
+                //user UserOrder details of the buyer id = curret user id , isold=true
+                var BuyerId = id;
+                var result = await _MKFYService.Purchase(data, BuyerId);
+
+                // Return a 200 response with the item vm
+                return Ok(result);
+            }
+            catch (DbUpdateException)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = "Unable to contact the database" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

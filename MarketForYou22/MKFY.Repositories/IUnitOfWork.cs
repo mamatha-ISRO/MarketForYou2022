@@ -14,9 +14,9 @@ namespace MKFY.Repositories
         // Repositories
         IMKFYitemRepository MKFYListItems { get; }
         IUserRepository Users { get; }
-
+        IUserLogRepository UserLogs { get;}
         // Save Method
         Task SaveAsync();
-
+        
     }
 }

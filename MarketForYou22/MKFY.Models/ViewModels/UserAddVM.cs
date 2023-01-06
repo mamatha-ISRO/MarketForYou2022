@@ -10,7 +10,7 @@ namespace MKFY.Models.ViewModels
     public class UserAddVM
     {
         [Required]
-        public string Id { get; set; } = String.Empty;
+        public string Id { get; set; }  = String.Empty;
 
         [Required]
         public string FirstName { get; set; } = String.Empty;
@@ -23,12 +23,5 @@ namespace MKFY.Models.ViewModels
 
         [Required]
         public string Phone { get; set; } = String.Empty;
-        
-        [Required]
-        public string UserAddress { get; set; } = String.Empty;
-
-        [Required]
-        public string UserCity { get; set; } = String.Empty;
-
     }
 }

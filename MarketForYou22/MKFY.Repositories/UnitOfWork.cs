@@ -20,13 +20,14 @@ namespace MKFY.Repositories
         public IMKFYitemRepository MKFYListItems { get; private set; }
        
         public IUserRepository Users { get; private set; }
+        public IUserLogRepository UserLogs { get; private set; }
         public UnitOfWork(MKFYApplicationDbContext context)
         {
             _context = context;
 
             MKFYListItems = new MKFYItemRepository(context);
             Users = new UserRepository(context);
-
+            UserLogs = new UserLogRepository(context);
         }
 
         public async Task SaveAsync()
