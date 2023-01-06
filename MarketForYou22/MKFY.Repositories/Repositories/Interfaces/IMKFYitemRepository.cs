@@ -18,6 +18,7 @@ namespace MKFY.Repositories.Repositoies.Interfaces
         void Purchase(MKFYList entity);     // Update an existing Item buyerId when user purchase
         void Delete(MKFYList entity);         // Delete a Item
         Task<IQueryable<MKFYList>> ToListAsync();
-        Task<List<MKFYList>>UserDeals(string userName);
+        Task<List<MKFYList>>UserDeals(string userName);// list of items to be retrieved 
+        Task<List<MKFYList>> SelectlastsearchItems(List<UserLog> listofItemdeals);
     }
 }

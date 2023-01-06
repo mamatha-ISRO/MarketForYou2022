@@ -149,18 +149,27 @@ namespace MarketForYou22.API.Controllers
         [HttpGet("userDeals/user")]
         public async Task<ActionResult<List<MKFYlistVM>>> UserDeals()
         {
+
             try
             {
                 var userId = User.GetId();
-                var result = await _MKFYService.UserDeals(userId);
-
-                if (result.Any())
+                if (userId == null)
                 {
-                    return Ok(result);
+                    return StatusCode(StatusCodes.Status400BadRequest,
+                                                   "No User Found");
                 }
 
-                return NotFound();
+                else
+                {
+                    var result = await _MKFYService.UserDeals(userId);
+                    if (result.Any())
+                    {
+                        return Ok(result);
+                    }
 
+                    return NotFound();
+                }
+               
             }
             catch
             {

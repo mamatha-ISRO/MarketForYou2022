@@ -36,7 +36,7 @@ namespace MKFY.Repositories.Repositoies
             return result;
         }
         //select the last three searches of user for display items as deals 
-        public async Task<List<MKFYList>>SelectlastsearchItems(IQueryable<UserLog> listofItemdeals)
+        public async Task<List<MKFYList>>SelectlastsearchItems(List<UserLog> listofItemdeals)
         {
             var finaldealsLst = new List<MKFYList>();
             // Get all the entities
@@ -45,7 +45,7 @@ namespace MKFY.Repositories.Repositoies
                     .Distinct()
                     .OrderBy(e => e.ItemPrice).ToListAsync();
 
-                 finaldealsLst.Append(results);
+                 finaldealsLst.AddRange(results);
             }
             // Return the retrieved entities
             return finaldealsLst;
@@ -59,7 +59,14 @@ namespace MKFY.Repositories.Repositoies
             // Return the retrieved entities
             return results;
         }
+        public async Task<List<MKFYList>> UserDeals(string Id)
+        {
+            // Get all the entities
+            var results = await _context.MKFYListItems.ToListAsync();
 
+            // Return the retrieved entities
+            return results;
+        }
         // Update an existing item
         public void Update(MKFYList entity)
         {

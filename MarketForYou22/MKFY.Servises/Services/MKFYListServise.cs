@@ -57,7 +57,7 @@ namespace MKFY.Services.Services
             return views;
         }
 
-        public async Task<List<MKFYlistVM>>UserDeals(string UserId)
+        public async Task<List<MKFYlistVM>> UserDeals(string UserId)
         {
 
             //select the search logs with user id from logtable, 
@@ -66,13 +66,13 @@ namespace MKFY.Services.Services
             // select lits of items with search string 
             var listofItemdeals = await _uow.MKFYListItems.SelectlastsearchItems(Last3Searches);
 
-            var listofItemdeals = await _uow.MKFYListItems.SelectlastsearchItems(e => new e.ItemName.contains((Last3Searches(1).SearchString) && OR && (Last3Searches(2).SearchString) && OR && (Last3Searches(3).SearchString)))
-                     .Distinct()
-                     .OrderBy(e => e.ItemPrice).ToListAsync();
+            //var mylistofItemdeals = await _uow.MKFYListItems.SelectlastsearchItems(e => e.ItemName.contains((Last3Searches(1).SearchString) && OR && (Last3Searches(2).SearchString) && OR && (Last3Searches(3).SearchString)))
+            //           .Distinct()
+            //        .OrderBy(e => e.ItemPrice).ToListAsync();
             //in the GetlogsbyUserName need to find 3 logs list , get all the 
             //take the last three searchstrings from table , selct them from market items table and acsend with price and send to list
-
-
+            var views = listofItemdeals.Select(listItem => new MKFYlistVM(listItem)).ToList();
+            return views;
         }
         public async Task<List<MKFYlistVM>>GetCategory(string category)
         {
