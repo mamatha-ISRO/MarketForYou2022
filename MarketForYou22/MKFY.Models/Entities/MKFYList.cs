@@ -42,7 +42,7 @@ namespace MKFY.Models.Entities
 
         [Required]
         public string PickAddress { get; set; } = string.Empty;
-         public bool IsSold { get; set; } 
+        public bool IsSold { get; set; } 
         // list items city name and find the items with city name 
         [Required]
         public string ItemCity { get; set; } = string.Empty;
@@ -57,9 +57,8 @@ namespace MKFY.Models.Entities
 
         // Relationships 
         [Required]
-        public string UserID { get; set; } = String.Empty;
-        public string? UserId { get; internal set; }
-
+        public string  UserID { get; set; }  // = String.Empty;
+       
         public User? User { get; set; }
 
     }

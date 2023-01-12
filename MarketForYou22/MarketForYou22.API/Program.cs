@@ -63,8 +63,8 @@ namespace MarketForYou22.API
                     app.UseStaticFiles();
                 }
                 //app.UseHttpsRedirection();
-                app.UseAuthorization();
                 app.UseAuthentication();
+                app.UseAuthorization();               
                 app.MapControllers();
 
             }

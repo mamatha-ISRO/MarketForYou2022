@@ -48,7 +48,7 @@ namespace MarketForYou22.API.Controllers
         }
 
         //impliment search menthod
-        [HttpGet]
+        [HttpGet("search")]
         public async Task<ActionResult<List<MKFYlistVM>>> Search([FromQuery] string? search, [FromQuery] String? category)
         {
             try
@@ -169,7 +169,7 @@ namespace MarketForYou22.API.Controllers
 
                     return NotFound();
                 }
-               
+
             }
             catch
             {
@@ -178,7 +178,7 @@ namespace MarketForYou22.API.Controllers
             }
 
         }
-
+        [HttpDelete("{id}")]
         private async Task<ActionResult> Delete([FromRoute] Guid id)
         {
             try
@@ -198,8 +198,8 @@ namespace MarketForYou22.API.Controllers
                 return BadRequest(new { message = "Unable to delete the requested  market item" });
             }
         }
-
-        private async Task<ActionResult<MKFYlistVM>> Purchase([FromBody] MKFYListUpdateVM data, string id)
+        [HttpPut("buy/{id}")]
+        private async Task<ActionResult<MKFYlistVM>> Purchase([FromRoute] Guid Id)
         {
             try
             {
@@ -207,8 +207,9 @@ namespace MarketForYou22.API.Controllers
 
                 //the data needs to be updated with buyer id and the isold 
                 //user UserOrder details of the buyer id = curret user id , isold=true
-                var BuyerId = id;
-                var result = await _MKFYService.Purchase(data, BuyerId);
+                var userId = User.GetId();
+                var BuyerId = userId;
+                var result = await _MKFYService.Purchase(Id, BuyerId);
 
                 // Return a 200 response with the item vm
                 return Ok(result);

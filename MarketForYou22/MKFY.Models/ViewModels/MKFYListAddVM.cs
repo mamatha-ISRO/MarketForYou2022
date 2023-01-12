@@ -24,6 +24,6 @@ namespace MKFY.Models.ViewModels
         [Required]
         public string ItemCity { get; set; } = string.Empty;
         [Required]
-        public string? ItemCategory { get; internal set; }
+        public string ItemCategory { get;  set; }= string.Empty;
     }
 }

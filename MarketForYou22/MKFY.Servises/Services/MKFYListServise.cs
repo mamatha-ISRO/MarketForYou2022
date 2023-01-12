@@ -136,10 +136,10 @@ namespace MKFY.Services.Services
             }
 
         //when user purchases update market list item 
-        public async Task<MKFYlistVM> Purchase(MKFYListUpdateVM src, string userId)
+        public async Task<MKFYlistVM> Purchase(Guid id, string userId)
         {
             // Get the existing entity
-            var entity = await _uow.MKFYListItems.GetById(src.Id );
+            var entity = await _uow.MKFYListItems.GetById(id );
 
             // Perform the update
            
